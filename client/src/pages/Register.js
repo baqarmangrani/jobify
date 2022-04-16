@@ -1,17 +1,21 @@
 import { useState, useEffect } from "react";
 import { Logo, FormRow, Alert } from "../components";
 import Wrapper from "../assets/wrappers/RegisterPage";
+import { useAppContext } from "../context/appContext";
 
 const data = {
   name: "",
   email: "",
   password: "",
   isMember: true,
-  showAlert: false,
 };
 
 const Register = () => {
   const [userData, setUserData] = useState(data);
+
+  const { isLoading, showAlert } = useAppContext();
+
+  console.log(showAlert);
 
   const toggleMember = () => {
     setUserData({ ...data, isMember: !userData.isMember });
@@ -30,8 +34,8 @@ const Register = () => {
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
         <Logo />
-        {setUserData.showAlert && <Alert />}
         <h3>{userData.isMember ? "Login" : "Register"}</h3>
+        {showAlert && <Alert />}
 
         {!userData.isMember && (
           <FormRow
