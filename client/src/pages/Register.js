@@ -35,8 +35,9 @@ const Register = () => {
     if (!email || !password || (!isMember && !name)) {
       displayAlert();
       return;
+    } else {
+      console.log(userData);
     }
-    console.log(userData);
   };
 
   return (
