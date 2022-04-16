@@ -13,21 +13,30 @@ const data = {
 const Register = () => {
   const [userData, setUserData] = useState(data);
 
-  const { isLoading, showAlert } = useAppContext();
+  const { isLoading, showAlert, displayAlert } = useAppContext();
 
-  console.log(showAlert);
+  // console.log(showAlert);
 
   const toggleMember = () => {
-    setUserData({ ...data, isMember: !userData.isMember });
+    setUserData({ ...userData, isMember: !userData.isMember });
   };
 
   const handleChange = (e) => {
-    console.log(e.target);
+    // debugger;
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+    // console.log(userData);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
+
+    const { name, email, password, isMember } = userData;
+
+    if (!email || !password || (!isMember && !name)) {
+      displayAlert();
+      return;
+    }
+    console.log(userData);
   };
 
   return (
@@ -40,21 +49,20 @@ const Register = () => {
         {!userData.isMember && (
           <FormRow
             type="text"
-            name="Name"
+            name="name"
             value={userData.name}
             handleChange={handleChange}
           />
         )}
-
         <FormRow
           type="email"
-          name="Email"
+          name="email"
           value={userData.email}
           handleChange={handleChange}
         />
         <FormRow
           type="password"
-          name="Password"
+          name="password"
           value={userData.password}
           handleChange={handleChange}
         />
