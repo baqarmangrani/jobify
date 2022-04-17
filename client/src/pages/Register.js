@@ -15,16 +15,12 @@ const Register = () => {
 
   const { isLoading, showAlert, displayAlert } = useAppContext();
 
-  // console.log(showAlert);
-
   const toggleMember = () => {
     setUserData({ ...userData, isMember: !userData.isMember });
   };
 
   const handleChange = (e) => {
-    // debugger;
     setUserData({ ...userData, [e.target.name]: e.target.value });
-    // console.log(userData);
   };
 
   const onSubmit = (e) => {

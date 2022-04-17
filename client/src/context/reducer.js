@@ -9,9 +9,12 @@ const reducer = (state, action) => {
       alertText: "Please provide all values",
     };
   } else if (action.type === CLEAR_ALERT) {
+    debugger;
     return {
       ...state,
       showAlert: false,
+      alertType: "",
+      alertText: "",
     };
   }
 
